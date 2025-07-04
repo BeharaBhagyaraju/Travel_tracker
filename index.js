@@ -6,12 +6,12 @@ import pg from "pg";
 const app = express();
 dotenv.config();
 const db = new pg.Client({
-  user: process.env.user1,
-  host: process.env.host1,
-  database: process.env.database1,
-  password: process.env.password1,
-  port: process.env.port1,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, 
+  },
 });
+
 // Connect to the database
 db.connect()
   .then(() => console.log("Connected to PostgreSQL"))
